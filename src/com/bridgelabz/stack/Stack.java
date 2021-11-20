@@ -2,71 +2,69 @@ package com.bridgelabz.stack;
 
 public class Stack {
 	
-	private static final int MAX=10;
+private static final int MAX = 10;
 	
-	private class Node{
-		int data;
-		Node link;
+	private int [] arr;
+	private int top;
+	
+	public Stack() {
+		arr = new int[MAX];
+		top = -1;
 	}
-	
-	Node top;
-	
-	public Stack(){
-		this.top = null;
-	}
-	
-	public void push(int x) {
-		Node temp = new Node();
-		
-		 if (temp == null) {
-			 System.out.println("Overflow");
-			 return;
-		 }
-		 
-		 temp.data = x;
-		 temp.link = top;
-		 top = temp;
-	}
-	
-	public boolean isEmpty() {
-		
-		return top == null;
-		
-	}
-	
-	 public int peek() {
-		 if (!isEmpty()) {
-	            return top.data;
-	        }
-	        else {
-	            System.out.println("Stack is empty");
-	            return -1;
-	        }
-	 }
-	 
-	 public void pop() {
-		 if (top == null) {
-	            System.out.print("\nStack Underflow");
-	            return;
-		 }
-	        top = (top).link;
-	 }
-	 
-	 public void display() {
-		 if(top == null) {
-			 System.out.println("Underflow");
-		 }
-		 else {
-			 Node temp = top;
-			 while(temp != null) {
-				 
-				 System.out.printf("%d-->", temp.data);
-				 
-				 temp = temp.link;
-			 }
-		 }
-	 }
 
+	public Stack(int length) {
+		this.arr = new int[length];
+		top = -1;
+	}
+
+	public boolean push(int data) {
+		if (isFull()) {
+			System.out.println("Stack is overflow");
+			return false;
+		}
+
+		arr[++top] = data;
+		System.out.println("push data into stack");
+		return true;
+	}
+
+	public boolean isFull() {
+		return (top >= arr.length - 1);
+	}
+
+	public void display() {
+		System.out.print("Stack:\n->");
+		for (int i = top; i > -1; i--) {
+			System.out.print(arr[i]+" -> ");
+		}
+		System.out.println();
+
+	}
+
+	public int pop() {
+		int data = arr[top--];
+		return data;
+	}
+
+	public int peek() {
+		if (isEmpty()) {
+			System.out.println("Stack is underflow");
+			return 0;
+		}
+		int data = arr[top];
+		return data;
+	}
+
+	private boolean isEmpty() {
+		return top < 0;
+	}
+
+	public int size() {
+		if (isEmpty()) {
+			return 0;
+		}
+		return ++top;
+	}
 }
 
 
