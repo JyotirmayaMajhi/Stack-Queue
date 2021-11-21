@@ -16,7 +16,9 @@ public class Main {
 
 		System.out.println("Queue after Enqueue Operation:");
 		q.queueDisplay();
-
+		q.queueDequeue(); 
+		q.queueDequeue(); 
+	    System.out.printf("Queue after two dequeue operations :");
 	}
 
 }
